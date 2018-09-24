@@ -36,6 +36,7 @@ function loadWeather() {
         const description = result.weather[0].description
         const temp = result.main.temp
         const image = result.weather[0].icon
+        //add weather
 
         const tempC = Math.round(temp - 273.15)
 
@@ -55,13 +56,12 @@ window.onload = () => {
   searchButton.onclick = () => {
     loadWeather()
   }
-}
 
-window.onload = () => {
-
-  let clearButton = document.getElementById("clearButton")
-  clearButton.onclick = () => {
+  /let clearButton = document.getElementById("clearButton")
+  //clearButton.onclick = () => {
     ///some clearing function??????
-  }
+
+    ///hint: html ""
+//  }
 
 }
