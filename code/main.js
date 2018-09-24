@@ -1,8 +1,4 @@
 function loadWeather() {
-  const request = new XMLHttpRequest();
-  //get text from input
-  ///getElementById
-  //figure out how to get the text out and put it into query
 
   let cityInput = document.getElementById('city')
 
@@ -14,29 +10,22 @@ function loadWeather() {
   } else {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}`
 
-    request.open("GET", url);
-    request.send();
+    fetch(url).then((response) => {
+    console.log(response)
+     return response.json()
+   }).then((data) => {
+     console.log(data)
 
-    request.onload = () => {
-      var result = JSON.parse(request.responseText);
-      console.log(result);
+     if (data.weather === undefined) {
+       alert("No city called")
+     } else {
+        console.log(data.weather)
 
+        let div = document.getElementById("result")
 
-
-      if (result.weather === undefined) {
-        alert("No such city")
-
-      } else {
-
-        let div = document.getElementById("result");
-
-        //result comes as an array so have to pull out the right number
-
-        const weather = result.weather[0].main;
-        const description = result.weather[0].description
-        const temp = result.main.temp
-        const image = result.weather[0].icon
-        //add weather
+        const weather = data.weather[0].main;
+        const description = data.weather[0].description
+        const temp = data.main.temp
 
         const tempC = Math.round(temp - 273.15)
 
@@ -46,8 +35,10 @@ function loadWeather() {
         <h3>${tempC}&degC</h3>
         <img alt="image" src="${image}"/>
         `
-      }
-    }
+
+     }
+
+    })
   }
 }
 
@@ -57,11 +48,10 @@ window.onload = () => {
     loadWeather()
   }
 
-  /let clearButton = document.getElementById("clearButton")
-  //clearButton.onclick = () => {
-    ///some clearing function??????
-
-    ///hint: html ""
-//  }
+  let clearButton = document.getElementById("clearButton")
+  clearButton.onclick = () => {
+    let div = document.getElementById("result")
+    div.innerHTML = ""
+  }
 
 }
