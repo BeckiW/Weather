@@ -2,9 +2,51 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #f282f2;
+  color: #19171c;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  background: #f282f2
+}
+
+.logo {
+  display: inline-block;
+  border-radius: 100%;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
   font-weight: bold;
   font-size: 10px;
+}
+
+#result {
+  background: #FFFFFF;
+  margin: 20px auto;
+  padding: 5px;
+  box-shadow: 2px 2px 0px -1px #000000;
+  border-radius: 4px;
+  border: 1px solid #222222;
+  overflow: hidden;
+  background-size: cover;
+  height: 200px;
+  width: 250px;
+}
+
+img {
+  text-align: center;
+}
+
+.pagewrapper {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#city {
+  border: 1px solid #222222;
 }

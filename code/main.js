@@ -11,14 +11,14 @@ function loadWeather() {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}`
 
     fetch(url).then((response) => {
-    console.log(response)
-     return response.json()
-   }).then((data) => {
-     console.log(data)
+      console.log(response)
+      return response.json()
+    }).then((data) => {
+      console.log(data)
 
-     if (data.weather === undefined) {
-       alert("No city called")
-     } else {
+      if (data.weather === undefined) {
+        alert("Invalid city, please try again")
+      } else {
         console.log(data.weather)
 
         let div = document.getElementById("result")
@@ -26,18 +26,19 @@ function loadWeather() {
         const weather = data.weather[0].main;
         const description = data.weather[0].description
         const temp = data.main.temp
+        const city = data.name
+        const image = data.weather[0].icon
 
         const tempC = Math.round(temp - 273.15)
 
         div.innerHTML = `
+        <h2>The weather in ${city} is ....</h2>
         <h2>${weather}</h2>
         <h3>${description}</h3>
-        <h3>${tempC}&degC</h3>
-        <img alt="image" src="${image}"/>
+        <h4>Temperature: ${tempC}&degC</h4>
+        <img src=Images/${image}.png />
         `
-
-     }
-
+      }
     })
   }
 }
@@ -52,6 +53,8 @@ window.onload = () => {
   clearButton.onclick = () => {
     let div = document.getElementById("result")
     div.innerHTML = ""
+    let cityInput = document.getElementById('city')
+    cityInput.value = ""
   }
 
 }
